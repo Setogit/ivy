@@ -32,7 +32,7 @@ log10
    :maxdepth: -1
    :caption: log10
 
-   log10/log10_container.rst
-   log10/log10_array.rst
    log10/log10_functional.rst
+   log10/log10_array.rst
+   log10/log10_container.rst
 

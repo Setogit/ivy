@@ -32,7 +32,7 @@ tile
    :maxdepth: -1
    :caption: tile
 
-   tile/tile_container.rst
-   tile/tile_array.rst
    tile/tile_functional.rst
+   tile/tile_array.rst
+   tile/tile_container.rst
 

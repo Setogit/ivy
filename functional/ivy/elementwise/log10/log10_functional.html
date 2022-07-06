@@ -5,7 +5,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>log10 functional &mdash; Ivy 1.0 documentation</title>
+  <title>ivy.log10 &mdash; Ivy 1.0 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
@@ -21,8 +21,8 @@
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="log1p" href="../log1p.html" />
-    <link rel="prev" title="log10 array" href="log10_array.html" /> 
+    <link rel="next" title="ivy.Array.log10" href="log10_array.html" />
+    <link rel="prev" title="log10" href="../log10.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -53,6 +53,7 @@
 <p class="caption" role="heading"><span class="caption-text">Array</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../array/activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../array/array_methods.html">Array methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../array/conversions.html">Conversions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../array/creation.html">Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../array/data_type.html">Data type</a></li>
@@ -79,6 +80,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/activations.html">Activations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/base.html">Base</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/container.html">Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../container/container_methods.html">Container methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/creation.html">Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/device.html">Device</a></li>
@@ -141,9 +143,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../less_equal.html">less_equal</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../log.html">log</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../log10.html">log10</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="log10_container.html">log10 container</a></li>
-<li class="toctree-l3"><a class="reference internal" href="log10_array.html">log10 array</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">log10 functional</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">ivy.log10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="log10_array.html">ivy.Array.log10</a></li>
+<li class="toctree-l3"><a class="reference internal" href="log10_container.html">ivy.Container.log10</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../log1p.html">log1p</a></li>
@@ -230,7 +232,7 @@
       <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
                     <li><a href="../../elementwise.html">Elementwise</a> &raquo;</li>
           <li><a href="../log10.html">log10</a> &raquo;</li>
-      <li>log10 functional</li>
+      <li>ivy.log10</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/functional/ivy/elementwise/log10/log10_functional.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -240,8 +242,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="log10-functional">
-<h1>log10 functional<a class="headerlink" href="#log10-functional" title="Permalink to this heading"></a></h1>
+  <section id="ivy-log10">
+<h1>ivy.log10<a class="headerlink" href="#ivy-log10" title="Permalink to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.functional.ivy.elementwise.log10">
 <span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">log10</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/ivy/functional/ivy/elementwise.html#log10"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.elementwise.log10" title="Permalink to this definition"></a></dt>
@@ -261,7 +263,7 @@ for each element <code class="docutils literal notranslate"><span class="pre">x_
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]) – input array. Should have a floating-point data type.</p></li>
-<li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]]) – optional output array, for writing the result to. It must have a shape that the (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
+<li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]) – optional output array, for writing the result to. It must have a shape that the (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
 inputs broadcast to.</p></li>
 </ul>
 </dd>
@@ -287,8 +289,8 @@ inputs broadcast to.</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="log10_array.html" class="btn btn-neutral float-left" title="log10 array" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../log1p.html" class="btn btn-neutral float-right" title="log1p" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../log10.html" class="btn btn-neutral float-left" title="log10" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="log10_array.html" class="btn btn-neutral float-right" title="ivy.Array.log10" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

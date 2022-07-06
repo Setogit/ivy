@@ -30,6 +30,6 @@ clip_vector_norm
    :maxdepth: -1
    :caption: clip_vector_norm
 
-   clip_vector_norm/clip_vector_norm_container.rst
    clip_vector_norm/clip_vector_norm_functional.rst
+   clip_vector_norm/clip_vector_norm_container.rst
 

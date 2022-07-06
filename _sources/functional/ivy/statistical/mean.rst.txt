@@ -32,7 +32,7 @@ mean
    :maxdepth: -1
    :caption: mean
 
-   mean/mean_container.rst
-   mean/mean_array.rst
    mean/mean_functional.rst
+   mean/mean_array.rst
+   mean/mean_container.rst
 

@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="qr" href="qr.html" />
-    <link rel="prev" title="outer" href="outer.html" /> 
+    <link rel="prev" title="ivy.Array.outer" href="outer/outer_array.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -53,6 +53,7 @@
 <p class="caption" role="heading"><span class="caption-text">Array</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../array/activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../array/array_methods.html">Array methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../array/conversions.html">Conversions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../array/creation.html">Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../array/data_type.html">Data type</a></li>
@@ -79,6 +80,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../container/activations.html">Activations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../container/base.html">Base</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../container/container.html">Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../container/container_methods.html">Container methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../container/creation.html">Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../container/data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../container/device.html">Device</a></li>
@@ -221,6 +223,8 @@ floating-point data type and must be compatible with <code class="docutils liter
 <code class="docutils literal notranslate"><span class="pre">max(M,</span> <span class="pre">N)</span> <span class="pre">*</span> <span class="pre">eps</span></code>, where <code class="docutils literal notranslate"><span class="pre">eps</span></code> must be the machine epsilon associated with
 the floating-point data type determined by <span class="xref std std-ref">type-promotion</span> (as applied to
 <code class="docutils literal notranslate"><span class="pre">x</span></code>). Default: <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]) – optional output array, for writing the result to. It must have a shape that the (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
+inputs broadcast to.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -231,6 +235,26 @@ the floating-point data type determined by <span class="xref std std-ref">type-p
 floating-point data type determined by <span class="xref std std-ref">type-promotion</span> and must have shape
 <code class="docutils literal notranslate"><span class="pre">(...,</span> <span class="pre">N,</span> <span class="pre">M)</span></code> (i.e., must have the same shape as <code class="docutils literal notranslate"><span class="pre">x</span></code>, except the innermost
 two dimensions must be transposed).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ivy.array.array_methods.inv">
+<span class="sig-prename descclassname">ivy.Array.</span></span><span class="sig-name descname"><span class="pre">inv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/array/array_methods.html#inv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.array_methods.inv" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ivy.array.array_methods.pinv">
+<span class="sig-prename descclassname">ivy.Array.</span></span><span class="sig-name descname"><span class="pre">pinv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/array/array_methods.html#pinv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.array_methods.pinv" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -246,7 +270,7 @@ two dimensions must be transposed).</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="outer.html" class="btn btn-neutral float-left" title="outer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="outer/outer_array.html" class="btn btn-neutral float-left" title="ivy.Array.outer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="qr.html" class="btn btn-neutral float-right" title="qr" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

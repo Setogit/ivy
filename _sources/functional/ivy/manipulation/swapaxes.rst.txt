@@ -32,7 +32,7 @@ swapaxes
    :maxdepth: -1
    :caption: swapaxes
 
-   swapaxes/swapaxes_container.rst
-   swapaxes/swapaxes_array.rst
    swapaxes/swapaxes_functional.rst
+   swapaxes/swapaxes_array.rst
+   swapaxes/swapaxes_container.rst
 

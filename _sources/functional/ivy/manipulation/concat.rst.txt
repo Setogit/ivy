@@ -32,7 +32,7 @@ concat
    :maxdepth: -1
    :caption: concat
 
+   concat/concat_functional.rst
    concat/concat_array.rst
    concat/concat_container.rst
-   concat/concat_functional.rst
 

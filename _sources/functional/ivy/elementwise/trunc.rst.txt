@@ -32,7 +32,7 @@ trunc
    :maxdepth: -1
    :caption: trunc
 
-   trunc/trunc_container.rst
-   trunc/trunc_array.rst
    trunc/trunc_functional.rst
+   trunc/trunc_array.rst
+   trunc/trunc_container.rst
 

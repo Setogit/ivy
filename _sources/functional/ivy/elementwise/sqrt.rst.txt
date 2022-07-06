@@ -32,7 +32,7 @@ sqrt
    :maxdepth: -1
    :caption: sqrt
 
-   sqrt/sqrt_container.rst
-   sqrt/sqrt_array.rst
    sqrt/sqrt_functional.rst
+   sqrt/sqrt_array.rst
+   sqrt/sqrt_container.rst
 

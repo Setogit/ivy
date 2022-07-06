@@ -32,7 +32,7 @@ random_uniform
    :maxdepth: -1
    :caption: random_uniform
 
-   random_uniform/random_uniform_container.rst
    random_uniform/random_uniform_functional.rst
+   random_uniform/random_uniform_container.rst
    random_uniform/static_random_uniform_container.rst
 

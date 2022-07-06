@@ -32,7 +32,7 @@ erf
    :maxdepth: -1
    :caption: erf
 
+   erf/erf_functional.rst
    erf/erf_array.rst
    erf/erf_container.rst
-   erf/erf_functional.rst
 

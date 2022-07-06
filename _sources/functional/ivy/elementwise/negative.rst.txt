@@ -32,7 +32,7 @@ negative
    :maxdepth: -1
    :caption: negative
 
-   negative/negative_container.rst
-   negative/negative_array.rst
    negative/negative_functional.rst
+   negative/negative_array.rst
+   negative/negative_container.rst
 

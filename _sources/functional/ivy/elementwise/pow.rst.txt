@@ -32,7 +32,7 @@ pow
    :maxdepth: -1
    :caption: pow
 
+   pow/pow_functional.rst
    pow/pow_array.rst
    pow/pow_container.rst
-   pow/pow_functional.rst
 

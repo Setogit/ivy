@@ -34,8 +34,8 @@ sparse_cross_entropy
    :maxdepth: -1
    :caption: sparse_cross_entropy
 
-   sparse_cross_entropy/sparse_cross_entropy_container.rst
-   sparse_cross_entropy/sparse_cross_entropy_array.rst
    sparse_cross_entropy/sparse_cross_entropy_functional.rst
+   sparse_cross_entropy/sparse_cross_entropy_array.rst
+   sparse_cross_entropy/sparse_cross_entropy_container.rst
    sparse_cross_entropy/static_sparse_cross_entropy_container.rst
 

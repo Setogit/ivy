@@ -5,7 +5,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>static_subtract container &mdash; Ivy 1.0 documentation</title>
+  <title>ivy.Container.static_subtract &mdash; Ivy 1.0 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
@@ -21,8 +21,8 @@
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="subtract container" href="subtract_container.html" />
-    <link rel="prev" title="subtract array" href="subtract_array.html" /> 
+    <link rel="next" title="ivy.Array.subtract" href="subtract_array.html" />
+    <link rel="prev" title="ivy.subtract" href="subtract_functional.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -53,6 +53,7 @@
 <p class="caption" role="heading"><span class="caption-text">Array</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../array/activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../array/array_methods.html">Array methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../array/conversions.html">Conversions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../array/creation.html">Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../array/data_type.html">Data type</a></li>
@@ -79,6 +80,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/activations.html">Activations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/base.html">Base</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/container.html">Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../container/container_methods.html">Container methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/creation.html">Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/device.html">Device</a></li>
@@ -161,10 +163,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../sqrt.html">sqrt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../square.html">square</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../subtract.html">subtract</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="subtract_array.html">subtract array</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">static_subtract container</a></li>
-<li class="toctree-l3"><a class="reference internal" href="subtract_container.html">subtract container</a></li>
-<li class="toctree-l3"><a class="reference internal" href="subtract_functional.html">subtract functional</a></li>
+<li class="toctree-l3"><a class="reference internal" href="subtract_functional.html">ivy.subtract</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">ivy.Container.static_subtract</a></li>
+<li class="toctree-l3"><a class="reference internal" href="subtract_array.html">ivy.Array.subtract</a></li>
+<li class="toctree-l3"><a class="reference internal" href="subtract_container.html">ivy.Container.subtract</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../tan.html">tan</a></li>
@@ -231,7 +233,7 @@
       <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
                     <li><a href="../../elementwise.html">Elementwise</a> &raquo;</li>
           <li><a href="../subtract.html">subtract</a> &raquo;</li>
-      <li>static_subtract container</li>
+      <li>ivy.Container.static_subtract</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/functional/ivy/elementwise/subtract/static_subtract_container.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -241,8 +243,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="static-subtract-container">
-<h1>static_subtract container<a class="headerlink" href="#static-subtract-container" title="Permalink to this heading"></a></h1>
+  <section id="ivy-container-static-subtract">
+<h1>ivy.Container.static_subtract<a class="headerlink" href="#ivy-container-static-subtract" title="Permalink to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.container.container_methods.static_subtract">
 <span class="sig-prename descclassname">ivy.Container.</span></span><span class="sig-name descname"><span class="pre">static_subtract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_chains</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_apply</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prune_unapplied</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_sequences</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/ivy/container/container_methods.html#static_subtract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.container.container_methods.static_subtract" title="Permalink to this definition"></a></dt>
@@ -264,8 +266,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="subtract_array.html" class="btn btn-neutral float-left" title="subtract array" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="subtract_container.html" class="btn btn-neutral float-right" title="subtract container" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="subtract_functional.html" class="btn btn-neutral float-left" title="ivy.subtract" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="subtract_array.html" class="btn btn-neutral float-right" title="ivy.Array.subtract" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

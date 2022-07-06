@@ -32,7 +32,7 @@ square
    :maxdepth: -1
    :caption: square
 
+   square/square_functional.rst
    square/square_array.rst
    square/square_container.rst
-   square/square_functional.rst
 

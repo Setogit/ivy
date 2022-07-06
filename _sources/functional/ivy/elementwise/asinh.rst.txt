@@ -32,7 +32,7 @@ asinh
    :maxdepth: -1
    :caption: asinh
 
+   asinh/asinh_functional.rst
    asinh/asinh_array.rst
    asinh/asinh_container.rst
-   asinh/asinh_functional.rst
 

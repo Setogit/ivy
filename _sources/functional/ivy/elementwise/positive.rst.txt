@@ -32,7 +32,7 @@ positive
    :maxdepth: -1
    :caption: positive
 
-   positive/positive_container.rst
-   positive/positive_array.rst
    positive/positive_functional.rst
+   positive/positive_array.rst
+   positive/positive_container.rst
 

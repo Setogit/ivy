@@ -32,7 +32,7 @@ std
    :maxdepth: -1
    :caption: std
 
+   std/std_functional.rst
    std/std_array.rst
    std/std_container.rst
-   std/std_functional.rst
 

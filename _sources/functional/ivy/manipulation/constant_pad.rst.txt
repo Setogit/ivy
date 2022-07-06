@@ -32,7 +32,7 @@ constant_pad
    :maxdepth: -1
    :caption: constant_pad
 
-   constant_pad/constant_pad_container.rst
-   constant_pad/constant_pad_array.rst
    constant_pad/constant_pad_functional.rst
+   constant_pad/constant_pad_array.rst
+   constant_pad/constant_pad_container.rst
 

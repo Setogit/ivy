@@ -5,7 +5,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>logical_xor array &mdash; Ivy 1.0 documentation</title>
+  <title>ivy.Array.logical_xor &mdash; Ivy 1.0 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
@@ -21,8 +21,8 @@
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="logical_xor functional" href="logical_xor_functional.html" />
-    <link rel="prev" title="logical_xor container" href="logical_xor_container.html" /> 
+    <link rel="next" title="ivy.Container.logical_xor" href="logical_xor_container.html" />
+    <link rel="prev" title="ivy.logical_xor" href="logical_xor_functional.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -53,6 +53,7 @@
 <p class="caption" role="heading"><span class="caption-text">Array</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../array/activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../array/array_methods.html">Array methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../array/conversions.html">Conversions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../array/creation.html">Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../array/data_type.html">Data type</a></li>
@@ -79,6 +80,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/activations.html">Activations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/base.html">Base</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/container.html">Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../container/container_methods.html">Container methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/creation.html">Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/device.html">Device</a></li>
@@ -148,9 +150,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../logical_not.html">logical_not</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../logical_or.html">logical_or</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../logical_xor.html">logical_xor</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="logical_xor_container.html">logical_xor container</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">logical_xor array</a></li>
-<li class="toctree-l3"><a class="reference internal" href="logical_xor_functional.html">logical_xor functional</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logical_xor_functional.html">ivy.logical_xor</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">ivy.Array.logical_xor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logical_xor_container.html">ivy.Container.logical_xor</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../multiply.html">multiply</a></li>
@@ -230,7 +232,7 @@
       <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
                     <li><a href="../../elementwise.html">Elementwise</a> &raquo;</li>
           <li><a href="../logical_xor.html">logical_xor</a> &raquo;</li>
-      <li>logical_xor array</li>
+      <li>ivy.Array.logical_xor</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/functional/ivy/elementwise/logical_xor/logical_xor_array.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -240,11 +242,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="logical-xor-array">
-<h1>logical_xor array<a class="headerlink" href="#logical-xor-array" title="Permalink to this heading"></a></h1>
+  <section id="ivy-array-logical-xor">
+<h1>ivy.Array.logical_xor<a class="headerlink" href="#ivy-array-logical-xor" title="Permalink to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.array.array_methods.logical_xor">
-<span class="sig-prename descclassname">ivy.Array.</span></span><span class="sig-name descname"><span class="pre">logical_xor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/ivy/array/array_methods.html#logical_xor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.array_methods.logical_xor" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname">ivy.Array.</span></span><span class="sig-name descname"><span class="pre">logical_xor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/ivy/array/array_methods.html#logical_xor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.array_methods.logical_xor" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></p>
@@ -263,8 +265,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="logical_xor_container.html" class="btn btn-neutral float-left" title="logical_xor container" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="logical_xor_functional.html" class="btn btn-neutral float-right" title="logical_xor functional" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="logical_xor_functional.html" class="btn btn-neutral float-left" title="ivy.logical_xor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="logical_xor_container.html" class="btn btn-neutral float-right" title="ivy.Container.logical_xor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

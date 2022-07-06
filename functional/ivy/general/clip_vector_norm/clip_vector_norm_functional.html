@@ -5,7 +5,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>clip_vector_norm functional &mdash; Ivy 1.0 documentation</title>
+  <title>ivy.clip_vector_norm &mdash; Ivy 1.0 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
@@ -21,8 +21,8 @@
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="clip_matrix_norm" href="../clip_matrix_norm.html" />
-    <link rel="prev" title="clip_vector_norm container" href="clip_vector_norm_container.html" /> 
+    <link rel="next" title="ivy.Container.clip_vector_norm" href="clip_vector_norm_container.html" />
+    <link rel="prev" title="clip_vector_norm" href="../clip_vector_norm.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -53,6 +53,7 @@
 <p class="caption" role="heading"><span class="caption-text">Array</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../array/activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../array/array_methods.html">Array methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../array/conversions.html">Conversions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../array/creation.html">Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../array/data_type.html">Data type</a></li>
@@ -79,6 +80,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/activations.html">Activations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/base.html">Base</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/container.html">Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../container/container_methods.html">Container methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/creation.html">Creation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/data_type.html">Data type</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../container/device.html">Device</a></li>
@@ -122,8 +124,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../to_scalar.html">to_scalar</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../to_list.html">to_list</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../clip_vector_norm.html">clip_vector_norm</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="clip_vector_norm_container.html">clip_vector_norm container</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">clip_vector_norm functional</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">ivy.clip_vector_norm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clip_vector_norm_container.html">ivy.Container.clip_vector_norm</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../clip_matrix_norm.html">clip_matrix_norm</a></li>
@@ -233,7 +235,7 @@
       <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
                     <li><a href="../../general.html">General</a> &raquo;</li>
           <li><a href="../clip_vector_norm.html">clip_vector_norm</a> &raquo;</li>
-      <li>clip_vector_norm functional</li>
+      <li>ivy.clip_vector_norm</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/functional/ivy/general/clip_vector_norm/clip_vector_norm_functional.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -243,8 +245,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="clip-vector-norm-functional">
-<h1>clip_vector_norm functional<a class="headerlink" href="#clip-vector-norm-functional" title="Permalink to this heading"></a></h1>
+  <section id="ivy-clip-vector-norm">
+<h1>ivy.clip_vector_norm<a class="headerlink" href="#ivy-clip-vector-norm" title="Permalink to this heading"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.functional.ivy.general.clip_vector_norm">
 <span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">clip_vector_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_norm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/ivy/functional/ivy/general.html#clip_vector_norm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.general.clip_vector_norm" title="Permalink to this definition"></a></dt>
@@ -279,8 +281,8 @@ inputs broadcast to.</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="clip_vector_norm_container.html" class="btn btn-neutral float-left" title="clip_vector_norm container" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../clip_matrix_norm.html" class="btn btn-neutral float-right" title="clip_matrix_norm" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../clip_vector_norm.html" class="btn btn-neutral float-left" title="clip_vector_norm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="clip_vector_norm_container.html" class="btn btn-neutral float-right" title="ivy.Container.clip_vector_norm" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

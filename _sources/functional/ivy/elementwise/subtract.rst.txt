@@ -34,8 +34,8 @@ subtract
    :maxdepth: -1
    :caption: subtract
 
-   subtract/subtract_array.rst
-   subtract/static_subtract_container.rst
-   subtract/subtract_container.rst
    subtract/subtract_functional.rst
+   subtract/static_subtract_container.rst
+   subtract/subtract_array.rst
+   subtract/subtract_container.rst
 
