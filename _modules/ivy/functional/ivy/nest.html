@@ -76,19 +76,19 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../data_classes/container.html">Container</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../data_classes/array.html">Array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../data_classes/container.html">Container</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Framework Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/initializers.html">Initializers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../stateful/converters.html">Converters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/optimizers.html">Optimizers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/module.html">Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/norms.html">Norms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/activations.html">Activations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../stateful/sequential.html">Sequential</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/module.html">Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/optimizers.html">Optimizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/norms.html">Norms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/layers.html">Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../stateful/initializers.html">Initializers</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
@@ -173,7 +173,7 @@
 <span class="sd">    &gt;&gt;&gt; print(z)</span>
 <span class="sd">    1</span>
 
-<span class="sd">    With :code:`ivy.Array` inputs:</span>
+<span class="sd">    With :class:`ivy.Array` inputs:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([[1., 2.], \</span>
 <span class="sd">                       [3., 4.]])</span>
@@ -244,7 +244,7 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    With :code:`ivy.Array` inputs:</span>
+<span class="sd">    With :class:`ivy.Array` inputs:</span>
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([[1., 2.], [3., 4.]])</span>
 <span class="sd">    &gt;&gt;&gt; y = (1, 1)</span>
 <span class="sd">    &gt;&gt;&gt; z = 5.</span>
@@ -277,7 +277,7 @@
 <span class="sd">    &gt;&gt;&gt; print(x)</span>
 <span class="sd">    [[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;],[&#39;d&#39;,&#39;e&#39;,&#39;f&#39;],[&#39;g&#39;,[&#39;H&#39;,&#39;i&#39;]]]</span>
 
-<span class="sd">     With :code:`ivy.Container` input:</span>
+<span class="sd">     With :class:`ivy.Container` input:</span>
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1., 2.]) , b=ivy.array([4., 5.]))</span>
 <span class="sd">    &gt;&gt;&gt; y = (&#39;b&#39;,)</span>
 <span class="sd">    &gt;&gt;&gt; z = ivy.array([3., 4.])</span>
@@ -406,7 +406,7 @@
 <span class="sd">    &gt;&gt;&gt; print(nest)</span>
 <span class="sd">    {&#39;a&#39;: [1.0, 11.0, 3.0], &#39;b&#39;: [4.0, 5.0, 22.0], &#39;c&#39;: [33.0]}</span>
 
-<span class="sd">    With :code:`ivy.Array` inputs:</span>
+<span class="sd">    With :class:`ivy.Array` inputs:</span>
 
 <span class="sd">    &gt;&gt;&gt; nest = ivy.array([[1., 2., 3.],[4., 5., 6.]])</span>
 <span class="sd">    &gt;&gt;&gt; indices = ((0, 1),(1, 2))</span>
@@ -485,7 +485,7 @@
 <span class="sd">    &gt;&gt;&gt; print(nest)</span>
 <span class="sd">    {&#39;a&#39;: [8.0, 16.0, 23.0], &#39;b&#39;: [11.0, 44.0, 81.0], &#39;c&#39;: [9.0, 76.0, 37.0]}</span>
 
-<span class="sd">    With :code:`ivy.Array` inputs:</span>
+<span class="sd">    With :class:`ivy.Array` inputs:</span>
 
 <span class="sd">    &gt;&gt;&gt; nest = ivy.array([[-9., 8., -17.],[11., -3., 5.]])</span>
 <span class="sd">    &gt;&gt;&gt; indices = ((0, 1),(1, 1),(1, 2))</span>
@@ -757,7 +757,7 @@
 <span class="sd">    &gt;&gt;&gt; print(results)</span>
 <span class="sd">    [1. 2.]</span>
 
-<span class="sd">    With :code:`float` inputs:</span>
+<span class="sd">    With float inputs:</span>
 
 <span class="sd">    &gt;&gt;&gt; def linear_model(w:float, x:float, b:float) -&gt; float: return w*x + b</span>
 <span class="sd">    &gt;&gt;&gt; results = ivy.map(fn = linear_model, \</span>
@@ -767,7 +767,7 @@
 <span class="sd">    &gt;&gt;&gt; print(results)</span>
 <span class="sd">    [1.0, 11.0, 21.0]</span>
 
-<span class="sd">    With :code:`ivy.Array` inputs:</span>
+<span class="sd">    With :class:`ivy.Array` inputs:</span>
 
 <span class="sd">    &gt;&gt;&gt; results = ivy.map(fn = linear_model, \</span>
 <span class="sd">        constant = {&#39;w&#39;:ivy.array([1.,0.,1.]), &#39;b&#39;:ivy.array([0.,10.,100.])}, \</span>
@@ -1005,7 +1005,7 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    With :code:`ivy.Array` input:</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; nest = ivy.array([[1.,2.,3.],[7.,8.,9.]])</span>
 <span class="sd">    &gt;&gt;&gt; copied_nest = ivy.copy_nest(nest)</span>

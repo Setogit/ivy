@@ -110,10 +110,6 @@ If you would like to contribute,
 please check out our `contributor guide`_,
 and take a look at the `open tasks`_ if you'd like to dive straight in! 🧑‍💻
 
-If you'd like to ask us questions, feel free to join in on any of our weekly "Ask us Anything!" online sessions!
-To see when the next one will be, check out the Events tab at the top left our
-`discord server <https://discord.gg/G4aR9Q7DTN>`_ 🙂
-
 Quick Start
 -----------
 
@@ -330,8 +326,8 @@ Citation
    :maxdepth: -1
    :caption: Data Classes
 
-   data_classes/container.rst
    data_classes/array.rst
+   data_classes/container.rst
 
 
 .. toctree::
@@ -339,14 +335,14 @@ Citation
    :maxdepth: -1
    :caption: Framework Classes
 
-   stateful/initializers.rst
    stateful/converters.rst
-   stateful/optimizers.rst
-   stateful/module.rst
-   stateful/layers.rst
-   stateful/norms.rst
-   stateful/activations.rst
    stateful/sequential.rst
+   stateful/activations.rst
+   stateful/module.rst
+   stateful/optimizers.rst
+   stateful/norms.rst
+   stateful/layers.rst
+   stateful/initializers.rst
 
 
 .. toctree::

@@ -91,19 +91,19 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../data_classes/container.html">Container</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../data_classes/array.html">Array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_classes/container.html">Container</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Framework Classes</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/initializers.html">Initializers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../stateful/converters.html">Converters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/optimizers.html">Optimizers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/module.html">Module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/norms.html">Norms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../stateful/activations.html">Activations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../stateful/sequential.html">Sequential</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/activations.html">Activations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/module.html">Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/optimizers.html">Optimizers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/norms.html">Norms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/layers.html">Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stateful/initializers.html">Initializers</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
@@ -261,8 +261,12 @@ the docker image after every change.</p>
 <p><strong>IDE Development</strong></p>
 <ol class="arabic simple">
 <li><p>For <strong>PyCharm</strong>, configurations are saved in the <code class="code docutils literal notranslate"><span class="pre">.idea</span></code> folder (part of the ivy repo).</p></li>
-<li><p>For <strong>VSCode</strong>, configurations can be found in the <code class="code docutils literal notranslate"><span class="pre">.vscode</span></code> folder (not part of the ivy repo).</p></li>
+<li><p>For <strong>VSCode</strong>, configurations can be found in the <code class="code docutils literal notranslate"><span class="pre">.devcontainer</span></code> folder (not part of the ivy repo).</p></li>
 </ol>
+<p><strong>NOTE:</strong> To use development container in VSCode, the extension “Remote - Containers”
+needs to be installed.</p>
+<p><strong>NOTE:</strong> When using GitHub Codespaces, the <code class="code docutils literal notranslate"><span class="pre">mounts</span></code> config in
+<code class="code docutils literal notranslate"><span class="pre">.devcontainer/devcontainer.json</span></code> is not supported.</p>
 <p><strong>Round Up</strong></p>
 <p>These examples should hopefully give you a good understanding of what is required
 when developing the Ivy applied libraries.</p>
