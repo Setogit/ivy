@@ -179,7 +179,8 @@ the module functions to ivy arrays as instance methods using _wrap_function.</p>
 <p>As shown, <cite>add_ivy_array_instance_methods</cite> adds all the appropriate functions from
 the activations module as instance methods to our toy <cite>ArrayExample</cite> class:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ivy.functional.ivy</span> <span class="kn">import</span> <span class="n">activations</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">ArrayExample</span><span class="p">:</span>             <span class="k">pass</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">ArrayExample</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">pass</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">add_ivy_array_instance_methods</span><span class="p">(</span><span class="n">ArrayExample</span><span class="p">,</span> <span class="p">[</span><span class="n">activations</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">ArrayExample</span><span class="p">,</span> <span class="s2">&quot;relu&quot;</span><span class="p">),</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ArrayExample</span><span class="p">,</span> <span class="s2">&quot;softmax&quot;</span><span class="p">))</span>
 <span class="go">True True</span>
@@ -187,38 +188,6 @@ the activations module as instance methods to our toy <cite>ArrayExample</cite> 
 </div>
 </dd></dl>
 
-<table class="colwidths-given docutils align-default" id="id1">
-<caption><span class="caption-text">Device Support</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Device</p></th>
-<th class="head"><p>JAX</p></th>
-<th class="head"><p>NumPy</p></th>
-<th class="head"><p>TensorFlow</p></th>
-<th class="head"><p>PyTorch</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>CPU</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p>GPU</p></td>
-<td><p>❌</p></td>
-<td><p>❌</p></td>
-<td><p>❌</p></td>
-<td><p>❌</p></td>
-</tr>
-</tbody>
-</table>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><strong>Supported Frameworks:</strong></div>

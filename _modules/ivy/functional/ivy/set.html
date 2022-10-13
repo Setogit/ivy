@@ -129,7 +129,7 @@
              
   <h1>Source code for ivy.functional.ivy.set</h1><div class="highlight"><pre>
 <span></span><span class="c1"># global</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">NamedTuple</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="c1"># local</span>
 <span class="kn">import</span> <span class="nn">ivy</span>
@@ -148,7 +148,14 @@
 <div class="viewcode-block" id="unique_all"><a class="viewcode-back" href="../../../../functional/ivy/set/unique_all/unique_all_functional.html#ivy.functional.ivy.set.unique_all">[docs]</a><span class="nd">to_native_arrays_and_back</span>
 <span class="nd">handle_nestable</span>
 <span class="nd">handle_exceptions</span>
-<span class="k">def</span> <span class="nf">unique_all</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">NamedTuple</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">unique_all</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span>
+    <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+    <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+    <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+    <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
+<span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Returns the unique elements of an input array ``x``, the first occurring indices</span>
 <span class="sd">    for each unique element in ``x``, the indices from the set of unique elements that</span>
 <span class="sd">    reconstruct ``x``, and the corresponding counts for each unique element in ``x``.</span>
@@ -211,19 +218,20 @@
 <span class="sd">           The order of unique elements is not specified and may vary between</span>
 <span class="sd">           implementations.</span>
 
-<span class="sd">    This method conforms to the `Array API Standard</span>
-<span class="sd">    &lt;https://data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of</span>
-<span class="sd">    the `docstring &lt;https://data-apis.org/array-api/latest/API_specification/</span>
-<span class="sd">    generated/signatures.elementwise_functions.tan.html&gt;`_</span>
-<span class="sd">    in the standard. The descriptions above assume an array input for simplicity, but</span>
-<span class="sd">    the method also accepts :class:`ivy.Container` instances in place of</span>
-<span class="sd">    :class:`ivy.Array` or :class:`ivy.NativeArray` instances, as shown in the type hints</span>
-<span class="sd">    and also the examples below.</span>
+
+<span class="sd">    This function conforms to the `Array API Standard</span>
+<span class="sd">    &lt;https://data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the</span>
+<span class="sd">    `docstring &lt;https://data-apis.org/array-api/latest/API_specification/generated/signatures.set_functions.unique_all.html&gt;`_ </span>
+<span class="sd">    in the standard.</span>
+
+<span class="sd">    Both the description and the type hints above assumes an array input for simplicity,</span>
+<span class="sd">    but this function is *nestable*, and therefore also accepts :class:`ivy.Container`</span>
+<span class="sd">    instances in place of any of the arguments.</span>
 
 <span class="sd">    Functional Examples</span>
 <span class="sd">    -------------------</span>
 
-<span class="sd">    With :code: &#39;ivy.Array&#39; input:</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.random_normal(mean=0.0, std=1.0, shape=(2, 2))</span>
 <span class="sd">    &gt;&gt;&gt; print(x)</span>
@@ -265,11 +273,12 @@
 <span class="sd">    &gt;&gt;&gt; print(counts)</span>
 <span class="sd">    ivy.array([1, 1, 1, 1, 1, 1, 1, 1, 1])</span>
 
-<span class="sd">    With :code: &#39;ivy.NativeArray&#39; input:</span>
+<span class="sd">    With :class:`ivy.NativeArray` input:</span>
 
-<span class="sd">    &gt;&gt;&gt; x = ivy.native_array([[ 2.1141,  0.8101,  0.9298,  0.8460],\</span>
-<span class="sd">    [-1.2119, -0.3519, -0.6252,  0.4033],[ 0.7443,  0.2577, -0.3707, -0.0545],\</span>
-<span class="sd">    [-0.3238,  0.5944,  0.0775, -0.4327]])</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.native_array([[ 2.1141,  0.8101,  0.9298,  0.8460],</span>
+<span class="sd">    ...                       [-1.2119, -0.3519, -0.6252,  0.4033],</span>
+<span class="sd">    ...                       [ 0.7443,  0.2577, -0.3707, -0.0545],</span>
+<span class="sd">    ...                       [-0.3238,  0.5944,  0.0775, -0.4327]])</span>
 <span class="sd">    &gt;&gt;&gt; print(x)</span>
 <span class="sd">    ivy.array([[ 2.1141,  0.8101,  0.9298,  0.8460],</span>
 <span class="sd">               [-1.2119, -0.3519, -0.6252,  0.4033],</span>
@@ -303,12 +312,12 @@
 <span class="sd">    Instance Method Examples</span>
 <span class="sd">    ------------------------</span>
 
-<span class="sd">    With :code: &#39;ivy.Array&#39; input:</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
 
-<span class="sd">    &gt;&gt;&gt; x = ivy.array([[ 2.1141,  0.8101,  0.9298,  0.8460],\</span>
-<span class="sd">    [-1.2119, -0.3519, -0.6252,  0.4033],\</span>
-<span class="sd">    [ 0.7443,  0.2577, -0.3707, -0.0545],\</span>
-<span class="sd">    [-0.3238,  0.5944,  0.0775, -0.4327]])</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([[ 2.1141,  0.8101,  0.9298,  0.8460],</span>
+<span class="sd">    ...                [-1.2119, -0.3519, -0.6252,  0.4033],</span>
+<span class="sd">    ...                [ 0.7443,  0.2577, -0.3707, -0.0545],</span>
+<span class="sd">    ...                [-0.3238,  0.5944,  0.0775, -0.4327]])</span>
 <span class="sd">    &gt;&gt;&gt; print(x)</span>
 <span class="sd">    ivy.array([[ 2.1141,  0.8101,  0.9298,  0.8460],</span>
 <span class="sd">               [-1.2119, -0.3519, -0.6252,  0.4033],</span>
@@ -339,11 +348,12 @@
 <span class="sd">    &gt;&gt;&gt; print(counts)</span>
 <span class="sd">    ivy.array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])</span>
 
-<span class="sd">    With :code: &#39;ivy.NativeArray&#39; input:</span>
+<span class="sd">    With :class:`ivy.NativeArray` input:</span>
 
-<span class="sd">    &gt;&gt;&gt; x = ivy.native_array([[-2.176,  0.889,  1.175, -0.763],\</span>
-<span class="sd">    [-0.071,  1.262, -0.456, -2.114],[-0.349,  0.615, -0.594, -1.335],\</span>
-<span class="sd">    [ 0.212,  0.457, -0.827,  0.209]])</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.native_array([[-2.176,  0.889,  1.175, -0.763],</span>
+<span class="sd">    ...                       [-0.071,  1.262, -0.456, -2.114],</span>
+<span class="sd">    ...                       [-0.349,  0.615, -0.594, -1.335],</span>
+<span class="sd">    ...                       [ 0.212,  0.457, -0.827,  0.209]])</span>
 <span class="sd">    &gt;&gt;&gt; print(x)</span>
 <span class="sd">    ivy.array([[-2.176,  0.889,  1.175, -0.763],</span>
 <span class="sd">               [-0.071,  1.262, -0.456, -2.114],</span>
@@ -383,7 +393,9 @@
 <div class="viewcode-block" id="unique_inverse"><a class="viewcode-back" href="../../../../functional/ivy/set/unique_inverse/unique_inverse_functional.html#ivy.functional.ivy.set.unique_inverse">[docs]</a><span class="nd">to_native_arrays_and_back</span>
 <span class="nd">handle_nestable</span>
 <span class="nd">handle_exceptions</span>
-<span class="k">def</span> <span class="nf">unique_inverse</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">NamedTuple</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">unique_inverse</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">]]:</span>
     <span class="sd">&quot;&quot;&quot;Returns the unique elements of an input array ``x``, and the indices from the</span>
 <span class="sd">     set of unique elements that reconstruct ``x``.</span>
 
@@ -436,36 +448,38 @@
 <span class="sd">           The order of unique elements is not specified and may vary between</span>
 <span class="sd">           implementations.</span>
 
-<span class="sd">    This method conforms to the `Array API Standard</span>
-<span class="sd">    &lt;https://data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of</span>
-<span class="sd">    the `docstring &lt;https://data-apis.org/array-api/latest/API_specification/</span>
-<span class="sd">    generated/signatures..set_functions.unique_inverse.html&gt;`_</span>
-<span class="sd">    in the standard. The descriptions above assume an array input for simplicity, but</span>
-<span class="sd">    the method also accepts :class:`ivy.Container` instances in place of</span>
-<span class="sd">    :class:`ivy.Array` or :class:`ivy.NativeArray` instances, as shown in the type hints</span>
+
+<span class="sd">    This function conforms to the `Array API Standard</span>
+<span class="sd">    &lt;https://data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the</span>
+<span class="sd">    `docstring &lt;https://data-apis.org/array-api/latest/API_specification/generated/signatures.set_functions.unique_inverse.html&gt;`_ </span>
+<span class="sd">    in the standard.</span>
+
+<span class="sd">    Both the description and the type hints above assumes an array input for simplicity,</span>
+<span class="sd">    but this function is *nestable*, and therefore also accepts :class:`ivy.Container`</span>
+<span class="sd">    instances in place of any of the arguments.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    With :code: &#39;ivy.Array&#39; input:</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([4,5,3,2,4,1,3])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.unique_inverse(x)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
-<span class="sd">    unique_inverse(values=ivy.array([1, 2, 3, 4, 5]),</span>
+<span class="sd">    Results(values=ivy.array([1, 2, 3, 4, 5]),</span>
 <span class="sd">    inverse_indices=ivy.array([3, 4, 2, 1, 3, 0, 2]))</span>
 
-<span class="sd">    With :code: &#39;ivy.NativeArray&#39; input:</span>
+<span class="sd">    With :class:`ivy.NativeArray` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.native_array([0.5,0.3,0.8,0.2,1.2,2.4,0.3])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.ivy.unique_inverse(x)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
-<span class="sd">    unique_inverse(values=ivy.array([0.2, 0.3, 0.5, 0.8, 1.2, 2.4]),</span>
+<span class="sd">    Results(values=ivy.array([0.2, 0.3, 0.5, 0.8, 1.2, 2.4]),</span>
 <span class="sd">    inverse_indices=ivy.array([2, 1, 3, 0, 4, 5, 1]))</span>
 
 <span class="sd">    With :class:`ivy.Container` input:</span>
 
-<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1., 4., 3. , 5. , 3. , 7.]), \</span>
-<span class="sd">                          b=ivy.array([3,2,6,3,7,4,9]))</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1., 4., 3. , 5. , 3. , 7.]),</span>
+<span class="sd">    ...                   b=ivy.array([3, 2, 6, 3, 7, 4, 9]))</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.ivy.unique_inverse(x)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    {</span>
@@ -531,6 +545,16 @@
 <span class="sd">           The order of unique elements is not specified and may vary between</span>
 <span class="sd">           implementations.</span>
 
+
+<span class="sd">    This function conforms to the `Array API Standard</span>
+<span class="sd">    &lt;https://data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the</span>
+<span class="sd">    `docstring &lt;https://data-apis.org/array-api/latest/API_specification/generated/signatures.set_functions.unique_values.html&gt;`_ </span>
+<span class="sd">    in the standard.</span>
+
+<span class="sd">    Both the description and the type hints above assumes an array input for simplicity,</span>
+<span class="sd">    but this function is *nestable*, and therefore also accepts :class:`ivy.Container`</span>
+<span class="sd">    instances in place of any of the arguments.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">current_backend</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">unique_values</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
 
@@ -538,7 +562,9 @@
 <div class="viewcode-block" id="unique_counts"><a class="viewcode-back" href="../../../../functional/ivy/set/unique_counts/unique_counts_functional.html#ivy.functional.ivy.set.unique_counts">[docs]</a><span class="nd">to_native_arrays_and_back</span>
 <span class="nd">handle_nestable</span>
 <span class="nd">handle_exceptions</span>
-<span class="k">def</span> <span class="nf">unique_counts</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">NamedTuple</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">unique_counts</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">]]:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the unique elements of an input array ``x`` and the corresponding counts for</span>
 <span class="sd">    each unique element in ``x``.</span>
@@ -587,18 +613,19 @@
 <span class="sd">           The order of unique elements is not specified and may vary between</span>
 <span class="sd">           implementations.</span>
 
-<span class="sd">    This method conforms to the `Array API Standard</span>
-<span class="sd">    &lt;https://data-apis.org/array-api/latest/&gt;`. This docstring is an extension of</span>
-<span class="sd">    the `docstring &lt;https://data-apis.org/array-api/latest/API_specification/</span>
-<span class="sd">    generated/signatures.set_functions.unique_counts.html&gt;` in the standard.</span>
-<span class="sd">    The descriptions above assume an array input for simplicity, but</span>
-<span class="sd">    the method also accepts :class:`ivy.Container` instances in place of</span>
-<span class="sd">    :class:`ivy.Array` or :class:`ivy.NativeArray` instances, as shown in the type hints</span>
-<span class="sd">    and also the examples below.</span>
+
+<span class="sd">    This function conforms to the `Array API Standard</span>
+<span class="sd">    &lt;https://data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the</span>
+<span class="sd">    `docstring &lt;https://data-apis.org/array-api/latest/API_specification/generated/signatures.set_functions.unique_counts.html&gt;`_ </span>
+<span class="sd">    in the standard.</span>
+
+<span class="sd">    Both the description and the type hints above assumes an array input for simplicity,</span>
+<span class="sd">    but this function is *nestable*, and therefore also accepts :class:`ivy.Container`</span>
+<span class="sd">    instances in place of any of the arguments.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    With :code: &#39;ivy.Array&#39; input:</span>
+<span class="sd">    With :class:`ivy.Array` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.array([1,2,1,3,4,1,3])</span>
 <span class="sd">    &gt;&gt;&gt; y = unique_counts(x)</span>
@@ -610,7 +637,7 @@
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    Tuple([1,2,3,4,5,6],[1,2,3,3,2,1])</span>
 
-<span class="sd">    With :code: &#39;ivy.NativeArray&#39; input:</span>
+<span class="sd">    With :class:`ivy.NativeArray` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.native_array([0.2,0.3,0.4,0.2,1.4,2.3,0.2])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.unique_counts(x)</span>
@@ -619,8 +646,8 @@
 
 <span class="sd">    With :class:`ivy.Container` input:</span>
 
-<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0., 1., 3. , 2. , 1. , 0.]), \</span>
-<span class="sd">                          b=ivy.array([1,2,1,3,4,1,3]))</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0., 1., 3. , 2. , 1. , 0.]),</span>
+<span class="sd">    ...                   b=ivy.array([1, 2, 1, 3, 4, 1, 3]))</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.unique_counts(x)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    {</span>

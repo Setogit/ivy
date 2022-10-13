@@ -76,6 +76,7 @@
 <li class="toctree-l2"><a class="reference internal" href="manipulation/squeeze.html">squeeze</a></li>
 <li class="toctree-l2"><a class="reference internal" href="manipulation/stack.html">stack</a></li>
 <li class="toctree-l2"><a class="reference internal" href="manipulation/clip.html">clip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manipulation/pad.html">pad</a></li>
 <li class="toctree-l2"><a class="reference internal" href="manipulation/constant_pad.html">constant_pad</a></li>
 <li class="toctree-l2"><a class="reference internal" href="manipulation/repeat.html">repeat</a></li>
 <li class="toctree-l2"><a class="reference internal" href="manipulation/split.html">split</a></li>
@@ -172,16 +173,13 @@ inputs broadcast to.</p></li>
 <dd class="field-even"><p><a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><ul class="simple">
-<li><p><em>ret</em> – An array with the elements of x, but where values &lt; x_min are replaced with
-x_min, and those &gt; x_max with x_max.</p></li>
-<li><p><em>Both the description and the type hints above assumes an array input for simplicity,</em></p></li>
-<li><p>but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code></p></li>
-<li><p><em>instances in place of any of the arguments.</em></p></li>
-</ul>
-</p>
+<dd class="field-odd"><p><em>ret</em> – An array with the elements of x, but where values &lt; x_min are replaced with
+x_min, and those &gt; x_max with x_max.</p>
 </dd>
 </dl>
+<p>Both the description and the type hints above assumes an array input for simplicity,
+but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
+instances in place of any of the arguments.</p>
 <p class="rubric">Examples</p>
 <p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> input:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mf">9.</span><span class="p">])</span>
@@ -224,7 +222,8 @@ x_min, and those &gt; x_max with x_max.</p></li>
 </pre></div>
 </div>
 <p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> input:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span>                           <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]))</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span>
+<span class="gp">... </span>                  <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">{</span>
@@ -234,7 +233,8 @@ x_min, and those &gt; x_max with x_max.</p></li>
 </pre></div>
 </div>
 <p>With multiple <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> inputs:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span>                           <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]))</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span>
+<span class="gp">... </span>                  <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x_min</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="o">=-</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x_max</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x_min</span><span class="p">,</span><span class="n">x_max</span><span class="p">)</span>
@@ -249,7 +249,8 @@ x_min, and those &gt; x_max with x_max.</p></li>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mf">9.</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x_min</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">x_max</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span>                           <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span>
+<span class="gp">... </span>                  <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
 <span class="go">{</span>
@@ -280,27 +281,21 @@ inputs broadcast to.</p></li>
 <dd class="field-even"><p><a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><ul class="simple">
-<li><p><em>ret</em> – an output array containing the concatenated values. If the input arrays have
-different data types, normal Type Promotion Rules apply.</p></li>
-<li><p>This function conforms to the <a href="#id1"><span class="problematic" id="id2">`</span></a>Array API Standard</p></li>
-<li><p><strong>&lt;https</strong> (//data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the)</p></li>
-<li><p><strong>`docstring &lt;https</strong> (//data-apis.org/array-api/latest/API_specification/generated/signatures.manipulation_functions.concat.html#signatures.manipulation_functions.concat&gt;`_ : E501)</p></li>
-<li><p><em>in the standard.</em></p></li>
-<li><p><em>Both the description and the type hints above assumes an array input for simplicity,</em></p></li>
-<li><p>but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code></p></li>
-<li><p><em>instances in place of any of the arguments.</em></p></li>
-</ul>
-</p>
+<dd class="field-odd"><p><em>ret</em> – an output array containing the concatenated values. If the input arrays have
+different data types, normal Type Promotion Rules apply.</p>
 </dd>
 </dl>
+<p>This function conforms to the <a class="reference external" href="https://data-apis.org/array-api/latest/">Array API Standard</a>. This docstring is an extension of the
+<a class="reference external" href="https://data-apis.org/array-api/latest/API_specification/generated/signatures.manipulation_functions.concat.html">docstring</a> 
+in the standard.</p>
+<p>Both the description and the type hints above assumes an array input for simplicity,
+but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
+instances in place of any of the arguments.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
-<span class="go">ivy.array([[1, 2],</span>
-<span class="go">           [3, 4],</span>
-<span class="go">           [5, 6]])</span>
+<span class="go">ivy.array([[1, 2],[3, 4],[5, 6]])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -325,15 +320,12 @@ inputs broadcast to.</p></li>
 <dd class="field-even"><p><a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><ul class="simple">
-<li><p><em>ret</em> – Padded array of rank equal to x with shape increased according to pad_width.</p></li>
-<li><p><em>Both the description and the type hints above assumes an array input for simplicity,</em></p></li>
-<li><p>but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code></p></li>
-<li><p><em>instances in place of any of the arguments.</em></p></li>
-</ul>
-</p>
+<dd class="field-odd"><p><em>ret</em> – Padded array of rank equal to x with shape increased according to pad_width.</p>
 </dd>
 </dl>
+<p>Both the description and the type hints above assumes an array input for simplicity,
+but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
+instances in place of any of the arguments.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -361,19 +353,14 @@ inputs broadcast to.</p></li>
 <dd class="field-even"><p><a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><ul class="simple">
-<li><p><em>ret</em> – an array with its dimension added by one in a given axis.</p></li>
-<li><p>This function conforms to the <a href="#id3"><span class="problematic" id="id4">`</span></a>Array API Standard</p></li>
-<li><p><strong>&lt;https</strong> (//data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the <a href="#id5"><span class="problematic" id="id6">`</span></a>docstring )</p></li>
-<li><p><strong>&lt;https</strong> (//data-apis.org/array-api/latest/API_specification/generated/signatures.manipulation_functions.expand_dims.html#signatures.manipulation_functions.expand_dims&gt;`_ )</p></li>
-<li><p><em>in the standard.</em></p></li>
-<li><p><em>Both the description and the type hints above assumes an array input for simplicity,</em></p></li>
-<li><p>but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code></p></li>
-<li><p><em>instances in place of any of the arguments.</em></p></li>
-</ul>
-</p>
+<dd class="field-odd"><p><em>ret</em> – an array with its dimension added by one in a given axis.</p>
 </dd>
 </dl>
+<p>This function conforms to the <a class="reference external" href="https://data-apis.org/array-api/latest/">Array API Standard</a>. This docstring is an extension of the <a class="reference external" href="https://data-apis.org/array-api/latest/API_specification/generated/signatures.manipulation_functions.expand_dims.html">docstring </a> 
+in the standard.</p>
+<p>Both the description and the type hints above assumes an array input for simplicity,
+but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
+instances in place of any of the arguments.</p>
 <p class="rubric">Examples</p>
 <p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> input:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span> <span class="c1">#x.shape-&gt;(3,)</span>
@@ -382,7 +369,8 @@ inputs broadcast to.</p></li>
 <span class="go">ivy.array([[0, 1, 2]])</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">],</span>                        <span class="p">[</span>  <span class="mi">1</span><span class="p">,</span>    <span class="mi">2</span><span class="p">,</span>   <span class="mi">3</span><span class="p">]])</span> <span class="c1">#x.shape-&gt;(2, 3)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">],</span>
+<span class="gp">... </span>               <span class="p">[</span>  <span class="mi">1</span><span class="p">,</span>    <span class="mi">2</span><span class="p">,</span>   <span class="mi">3</span><span class="p">]])</span> <span class="c1">#x.shape-&gt;(2, 3)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">y</span><span class="p">)</span> <span class="c1">#y.shape-&gt;(2, 1, 3)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
@@ -390,14 +378,16 @@ inputs broadcast to.</p></li>
 <span class="go">           [[ 1.,   2.,  3.]]])</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span>                        <span class="p">[</span> <span class="mi">3</span><span class="p">,</span>  <span class="mi">4</span><span class="p">]])</span> <span class="c1">#x.shape-&gt;(2, 2)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>               <span class="p">[</span> <span class="mi">3</span><span class="p">,</span>  <span class="mi">4</span><span class="p">]])</span> <span class="c1">#x.shape-&gt;(2, 2)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">x</span><span class="p">)</span> <span class="c1">#x.shape-&gt;(1, 2, 2)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="go">ivy.array([[[-1, -2],</span>
 <span class="go">            [3,  4]]])</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.2</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">],</span>                        <span class="p">[</span> <span class="mf">4.4</span><span class="p">,</span>  <span class="mf">5.5</span><span class="p">,</span> <span class="mf">6.6</span><span class="p">]])</span> <span class="c1">#x.shape-&gt;(2, 3)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.2</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">],</span>
+<span class="gp">... </span>               <span class="p">[</span> <span class="mf">4.4</span><span class="p">,</span>  <span class="mf">5.5</span><span class="p">,</span> <span class="mf">6.6</span><span class="p">]])</span> <span class="c1">#x.shape-&gt;(2, 3)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="c1">#y.shape-&gt;(1, 2, 3, 1)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">ivy.array([[[[-1.1],</span>
@@ -408,7 +398,8 @@ inputs broadcast to.</p></li>
 <span class="go">             [ 6.6]]]])</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.2</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">],</span>                        <span class="p">[</span> <span class="mf">6.3</span><span class="p">,</span>  <span class="mf">1.4</span><span class="p">,</span> <span class="mf">5.7</span><span class="p">]])</span> <span class="c1">#x.shape-&gt;(2, 3)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.2</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">],</span>
+<span class="gp">... </span>               <span class="p">[</span> <span class="mf">6.3</span><span class="p">,</span>  <span class="mf">1.4</span><span class="p">,</span> <span class="mf">5.7</span><span class="p">]])</span> <span class="c1">#x.shape-&gt;(2, 3)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1">##y.shape-&gt;(1, 1, 2, 3, 1)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">ivy.array([[[[[-1.7],</span>
@@ -420,7 +411,8 @@ inputs broadcast to.</p></li>
 </pre></div>
 </div>
 <p>With one <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> input:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span>                           <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]))</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span>
+<span class="gp">... </span>                  <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">{</span>
@@ -434,7 +426,8 @@ inputs broadcast to.</p></li>
 </pre></div>
 </div>
 <p>With multiple <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> inputs:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span>                           <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]))</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span>
+<span class="gp">... </span>                  <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">container_axis</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">container_axis</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
@@ -479,11 +472,13 @@ in the standard.</p>
 but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
 instances in place of any of the arguments.</p>
 <p class="rubric">Functional Examples</p>
-<p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> input:
-&gt;&gt;&gt; x = ivy.array([3, 4, 5])
-&gt;&gt;&gt; y = ivy.flip(x)
-&gt;&gt;&gt; print(y)
-ivy.array([5, 4, 3])</p>
+<p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> input:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">ivy.array([5, 4, 3])</span>
+</pre></div>
+</div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
@@ -515,37 +510,222 @@ ivy.array([5, 4, 3])</p>
 <span class="go">            [ 9,  8,  7]]])</span>
 </pre></div>
 </div>
-<p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.NativeArray</span></code> input:
-&gt;&gt;&gt; x = ivy.native_array([0., 1., 2.])
-&gt;&gt;&gt; y = ivy.flip(x)
-&gt;&gt;&gt; print(y)
-ivy.array([2., 1., 0.])</p>
-<p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> input:
-&gt;&gt;&gt; x = ivy.Container(a=ivy.array([0., 1., 2.]),                       b=ivy.array([3., 4., 5.]))
-&gt;&gt;&gt; y = ivy.flip(x)
-&gt;&gt;&gt; print(y)
-{</p>
-<blockquote>
-<div><p>a: ivy.array([2., 1., 0.]),
-b: ivy.array([5., 4., 3.])</p>
-</div></blockquote>
-<p>}</p>
+<p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.NativeArray</span></code> input:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">native_array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">ivy.array([2., 1., 0.])</span>
+</pre></div>
+</div>
+<p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> input:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span>
+<span class="gp">... </span>                  <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">    a: ivy.array([2., 1., 0.]),</span>
+<span class="go">    b: ivy.array([5., 4., 3.])</span>
+<span class="go">}</span>
+</pre></div>
+</div>
 <p class="rubric">Instance Method Examples</p>
-<p>Using <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> instance method:
-&gt;&gt;&gt; x = ivy.array([0., 1., 2.])
-&gt;&gt;&gt; y = x.flip()
-&gt;&gt;&gt; print(y)
-ivy.array([2., 1., 0.])</p>
-<p>Using <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> instance method:
-&gt;&gt;&gt; x = ivy.Container(a=ivy.array([0., 1., 2.]), b=ivy.array([3., 4., 5.]))
-&gt;&gt;&gt; y = x.flip()
-&gt;&gt;&gt; print(y)
-{</p>
+<p>Using <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> instance method:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">ivy.array([2., 1., 0.])</span>
+</pre></div>
+</div>
+<p>Using <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> instance method:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span> <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">    a: ivy.array([2., 1., 0.]),</span>
+<span class="go">    b: ivy.array([5., 4., 3.])</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ivy.functional.ivy.manipulation.pad">
+<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">pad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_width</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'constant'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stat_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constant_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reflect_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'even'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/manipulation.html#pad"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.manipulation.pad" title="Permalink to this definition"></a></dt>
+<dd><p>Pads an array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>    ) – Input array to pad.</p></li>
+<li><p><strong>pad_width</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]], <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – <dl class="simple">
+<dt>Number of values padded to the edges of each axis.</dt><dd><ul>
+<li><p>((before_1, after_1), … (before_N, after_N)) yields unique pad widths
+for each axis.</p></li>
+<li><p>((before, after),) yields same before and after pad for each axis.</p></li>
+<li><p>(pad,) or int is a shortcut for before = after = pad width for all axes.</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>mode</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[‘constant’, ‘edge’, ‘linear_ramp’, ‘maximum’, ‘mean’, ‘median’, ‘minimum’, ‘reflect’, ‘symmetric’, ‘wrap’, ‘empty’], <code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>]]) – <p>(default: <code class="docutils literal notranslate"><span class="pre">'constant'</span></code>)
+One of the following string values or a user supplied function.</p>
 <blockquote>
-<div><p>a: ivy.array([2., 1., 0.]),
-b: ivy.array([5., 4., 3.])</p>
+<div><ul>
+<li><p>”constant”: Pads with a constant value.</p></li>
+<li><p>”edge”: Pads with the edge values of array.</p></li>
+<li><p>”linear_ramp”: Pads with the linear ramp between end_value
+and the array edge value.</p></li>
+<li><p>”maximum”: Pads with the maximum value of all or part of the vector
+along each axis.</p></li>
+<li><p>”mean”: Pads with the mean value of all or part of the vector along
+each axis.</p></li>
+<li><p>”median”: Pads with the median value of all or part of the vector
+along each axis.</p></li>
+<li><p>”minimum”: Pads with the minimum value of all or part of the vector
+along each axis.</p></li>
+<li><p>”reflect”: Pads with the reflection mirrored on the first and last
+values of the vector along each axis.</p></li>
+<li><p>”symmetric”: Pads with the reflection of the vector mirrored along
+the edge of the array.</p></li>
+<li><p>”wrap”: Pads with the wrap of the vector along the axis.
+The first values are used to pad the end and the end values are used
+to pad the beginning.</p></li>
+<li><p>”empty”: Pads with undefined values.</p></li>
+<li><dl>
+<dt>&lt;function&gt;: Pads with a user-defined padding function.</dt><dd><p>The padding function should modify a rank 1 array in-place.
+It has the following signature:
+padding_func(vector, iaxis_pad_width, iaxis, kwargs), where:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>vector is
+A rank 1 array already padded with zeros. Padded values are
+vector[:iaxis_pad_width[0]] and vector[-iaxis_pad_width[1]:].</p></li>
+<li><p>iaxis_pad_width is
+A 2-tuple of ints, where iaxis_pad_width[0] represents the
+number of values padded at the beginning of vector and
+iaxis_pad_width[1] represents the number of values padded
+at the end of vector.</p></li>
+<li><p>iaxis is
+The axis currently being calculated.</p></li>
+<li><p>kwargs is
+A dict of any keyword arguments the function requires.</p></li>
+</ul>
 </div></blockquote>
-<p>}</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>stat_length</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]], <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]]) – <p>Used in “maximum”, “mean”, “median”, and “minimum”. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
+Number of values at edge of each axis used to calculate the statistic value.</p>
+<blockquote>
+<div><ul>
+<li><p>((before_1, after_1), … (before_N, after_N)) yields unique statistic
+lengths for each axis.</p></li>
+<li><p>((before, after),) yields same before and after statistic lengths for
+each axis.</p></li>
+<li><p>(stat_length,) or int is a shortcut for before = after = statistic length
+for all axes.</p></li>
+<li><p>None uses the entire axis.</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>constant_values</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Number</span></code>]], <code class="xref py py-class docutils literal notranslate"><span class="pre">Number</span></code>]]) – <p>(default: <code class="docutils literal notranslate"><span class="pre">0</span></code>)
+Used in “constant”. The values to set the padded values for each axis.</p>
+<blockquote>
+<div><ul>
+<li><p>((before_1, after_1), … (before_N, after_N)) yields unique pad constants
+for each axis.</p></li>
+<li><p>((before, after),) yields same before and after constants for each axis.</p></li>
+<li><p>(constant,) or constant is a shortcut for before = after = constant for
+all axes.</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>end_values</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Number</span></code>]], <code class="xref py py-class docutils literal notranslate"><span class="pre">Number</span></code>]]) – <p>Used in “linear_ramp”. The values used for the ending value of the linear_ramp (default: <code class="docutils literal notranslate"><span class="pre">0</span></code>)
+and that will form the edge of the padded array.</p>
+<blockquote>
+<div><ul>
+<li><p>((before_1, after_1), … (before_N, after_N)) yields unique end values
+for each axis.</p></li>
+<li><p>((before, after),) yields same before and after end values for each axis.</p></li>
+<li><p>(constant,) or constant is a shortcut for before = after = constant for
+all axes.</p></li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>reflect_type</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[‘even’, ‘odd’]]) – Used in “reflect”, and “symmetric”. The “even” style is the default with an (default: <code class="docutils literal notranslate"><span class="pre">'even'</span></code>)
+unaltered reflection around the edge value. For the “odd” style, the extended
+part of the array is created by subtracting the reflected values from two
+times the edge value.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>]) – optional output array, for writing the result to. It must have a shape that (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
+the inputs broadcast to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><em>ret</em> – Padded array of rank equal to x with shape increased according to pad_width.</p>
+</dd>
+</dl>
+<p>Both the description and the type hints above assume an array input for simplicity,
+but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
+instances in place of any of the arguments.</p>
+<p class="rubric">Examples</p>
+<p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> input:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">padding</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">padding</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">ivy.array([[0, 0, 0, 0, 0, 0, 0],</span>
+<span class="go">           [0, 0, 1, 2, 3, 0, 0],</span>
+<span class="go">           [0, 0, 4, 5, 6, 0, 0],</span>
+<span class="go">           [0, 0, 0, 0, 0, 0, 0]])</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">padding</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">padding</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;reflect&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">ivy.array([[6, 5, 4, 5, 6, 5, 4],</span>
+<span class="go">           [3, 2, 1, 2, 3, 2, 1],</span>
+<span class="go">           [6, 5, 4, 5, 6, 5, 4],</span>
+<span class="go">           [3, 2, 1, 2, 3, 2, 1]])</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">padding</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">padding</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;symmetric&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">ivy.array([[2, 1, 1, 2, 3, 3, 2],</span>
+<span class="go">           [2, 1, 1, 2, 3, 3, 2],</span>
+<span class="go">           [5, 4, 4, 5, 6, 6, 5],</span>
+<span class="go">           [5, 4, 4, 5, 6, 6, 5]])</span>
+</pre></div>
+</div>
+<p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.NativeArray</span></code> input:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">native_array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">padding</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">padding</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">,</span> <span class="n">constant_values</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">ivy.array([[7, 7, 7, 7, 7, 7, 7],</span>
+<span class="go">           [7, 7, 1, 2, 3, 7, 7],</span>
+<span class="go">           [7, 7, 4, 5, 6, 7, 7],</span>
+<span class="go">           [7, 7, 7, 7, 7, 7, 7]])</span>
+</pre></div>
+</div>
+<p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> input:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span> <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">padding</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">padding</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">    a: ivy.array([0., 0., 1., 2., 0.]),</span>
+<span class="go">    b: ivy.array([0., 0., 1., 2., 0.])</span>
+<span class="go">}</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -616,15 +796,13 @@ data type as x.</p>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]]),</span> <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]]))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">permute_dims</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">out</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">permute_dims</span><span class="p">(</span> <span class="n">axes</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="go">ivy.array([[3.],</span>
-<span class="go">           [4.],</span>
-<span class="go">           [5.]])</span>
+<span class="go">{a:ivy.array([[0.],[1.],[2.]]),b:ivy.array([[3.],[4.],[5.]])}</span>
 </pre></div>
 </div>
 <p>This function conforms to the <a class="reference external" href="https://data-apis.org/array-api/latest/">Array API Standard</a>. This docstring is an extension of the
-<a class="reference external" href="https://data-apis.org/array-api/latest/API_specification/generated/signatures.elementwise_functions.tan.html">docstring</a> : E501
+<a class="reference external" href="https://data-apis.org/array-api/latest/API_specification/generated/signatures.manipulation_functions.permute_dims.html">docstring</a> 
 in the standard.</p>
 <p>Both the description and the type hints above assumes an array input for simplicity,
 but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
@@ -651,15 +829,12 @@ inputs broadcast to.</p></li>
 <dd class="field-even"><p><a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><ul class="simple">
-<li><p><em>ret</em> – The repeated output array.</p></li>
-<li><p><em>Both the description and the type hints above assumes an array input for simplicity,</em></p></li>
-<li><p>but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code></p></li>
-<li><p><em>instances in place of any of the arguments.</em></p></li>
-</ul>
-</p>
+<dd class="field-odd"><p><em>ret</em> – The repeated output array.</p>
 </dd>
 </dl>
+<p>Both the description and the type hints above assumes an array input for simplicity,
+but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
+instances in place of any of the arguments.</p>
 <p class="rubric">Examples</p>
 <p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> input:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
@@ -678,7 +853,8 @@ inputs broadcast to.</p></li>
 </pre></div>
 </div>
 <p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> input:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span>                           <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]))</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span>
+<span class="gp">... </span>                  <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">{</span>
@@ -714,22 +890,18 @@ inputs broadcast to.</p></li>
 <dd class="field-even"><p><a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><ul class="simple">
-<li><p><em>ret</em> – an output array having the same data type and elements as x.</p></li>
-<li><p>This function conforms to the <a href="#id9"><span class="problematic" id="id10">`</span></a>Array API Standard</p></li>
-<li><p><strong>&lt;https</strong> (//data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the)</p></li>
-<li><p><strong>`docstring &lt;https</strong> (//data-apis.org/array-api/latest/API_specification/generated/signatures.manipulation_functions.reshape.html#signatures.manipulation_functions.reshape&gt;`_ : E501)</p></li>
-<li><p><em>in the standard.</em></p></li>
-<li><p><em>Both the description and the type hints above assumes an array input for simplicity,</em></p></li>
-<li><p>but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code></p></li>
-<li><p><em>instances in place of any of the arguments.</em></p></li>
-</ul>
-</p>
+<dd class="field-odd"><p><em>ret</em> – an output array having the same data type and elements as x.</p>
 </dd>
 </dl>
+<p>This function conforms to the <a class="reference external" href="https://data-apis.org/array-api/latest/">Array API Standard</a>. This docstring is an extension of the
+<a class="reference external" href="https://data-apis.org/array-api/latest/API_specification/generated/signatures.manipulation_functions.reshape.html">docstring</a> 
+in the standard.</p>
+<p>Both the description and the type hints above assumes an array input for simplicity,
+but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
+instances in place of any of the arguments.</p>
 <p class="rubric">Examples</p>
 <p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> input:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span>                        <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">,(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">ivy.array([[0., 1.],</span>
@@ -746,7 +918,8 @@ inputs broadcast to.</p></li>
 </pre></div>
 </div>
 <p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> input:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]),</span>                           <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]))</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]),</span>
+<span class="gp">... </span>                  <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">,(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">{</span>
@@ -761,8 +934,7 @@ inputs broadcast to.</p></li>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">native_array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="go">ivy.array([[0, 1],</span>
-<span class="go">           [2, 3]])</span>
+<span class="go">ivy.array([[0, 1],[2, 3]])</span>
 </pre></div>
 </div>
 <p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> input:</p>
@@ -770,12 +942,8 @@ inputs broadcast to.</p></li>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">{</span>
-<span class="go">    a: ivy.array([[0.],</span>
-<span class="go">                  [1.],</span>
-<span class="go">                  [2.]]),</span>
-<span class="go">    b: ivy.array([[3.],</span>
-<span class="go">                  [4.],</span>
-<span class="go">                  [5.]])</span>
+<span class="go">    a: ivy.array([[0.],[1.],[2.]]),</span>
+<span class="go">    b: ivy.array([[3.],[4.],[5.]])</span>
 <span class="go">}</span>
 </pre></div>
 </div>
@@ -810,20 +978,16 @@ inputs broadcast to.</p></li>
 <dd class="field-even"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>, <a class="reference internal" href="../../data_classes/container/container/Container.html#ivy.container.container.Container" title="ivy.container.container.Container"><code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code></a>]</p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><ul class="simple">
-<li><p><em>ret</em> – an output array having the same data type as x and whose elements, relative
-to x, are shifted.</p></li>
-<li><p>This function conforms to the <a href="#id11"><span class="problematic" id="id12">`</span></a>Array API Standard</p></li>
-<li><p><strong>&lt;https</strong> (//data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the)</p></li>
-<li><p><strong>`docstring &lt;https</strong> (//data-apis.org/array-api/latest/API_specification/generated/signatures.elementwise_functions.roll.html&gt;`_ )</p></li>
-<li><p><em>in the standard.</em></p></li>
-<li><p><em>Both the description and the type hints above assumes an array input for simplicity,</em></p></li>
-<li><p>but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code></p></li>
-<li><p><em>instances in place of any of the arguments.</em></p></li>
-</ul>
-</p>
+<dd class="field-odd"><p><em>ret</em> – an output array having the same data type as x and whose elements, relative
+to x, are shifted.</p>
 </dd>
 </dl>
+<p>This function conforms to the <a class="reference external" href="https://data-apis.org/array-api/latest/">Array API Standard</a>. This docstring is an extension of the
+<a class="reference external" href="https://data-apis.org/array-api/latest/API_specification/generated/signatures.manipulation_functions.roll.html">docstring</a> 
+in the standard.</p>
+<p>Both the description and the type hints above assumes an array input for simplicity,
+but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
+instances in place of any of the arguments.</p>
 <p class="rubric">Examples</p>
 <p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> input:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">])</span>
@@ -832,15 +996,17 @@ to x, are shifted.</p></li>
 <span class="go">ivy.array([2., 0., 1.])</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span>                        <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span>
+<span class="gp">... </span>               <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">ivy.array([[1., 2., 0.],</span>
-<span class="go">            [4., 5., 3.]])</span>
+<span class="go">           [4., 5., 3.]])</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">]],</span>                        <span class="p">[[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">9.</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">12.</span><span class="p">],</span> <span class="p">[</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">15.</span><span class="p">]]])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">]],</span>
+<span class="gp">... </span>               <span class="p">[[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">9.</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">12.</span><span class="p">],</span> <span class="p">[</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">15.</span><span class="p">]]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">out</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="go">ivy.array([[[ 9., 3.],</span>
@@ -852,7 +1018,8 @@ to x, are shifted.</p></li>
 </pre></div>
 </div>
 <p>With one <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> input:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span>                           <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]))</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span>
+<span class="gp">... </span>                  <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">{</span>
@@ -862,7 +1029,8 @@ to x, are shifted.</p></li>
 </pre></div>
 </div>
 <p>With multiple <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> inputs:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span>                           <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]))</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span>
+<span class="gp">... </span>                  <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">shift</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">shift</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
@@ -873,14 +1041,16 @@ to x, are shifted.</p></li>
 </pre></div>
 </div>
 <p class="rubric">Instance Method Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span>                        <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span>
+<span class="gp">... </span>               <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">ivy.array([[1., 2., 0.],</span>
 <span class="go">            [4., 5., 3.]])</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span>                           <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]))</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span>
+<span class="gp">... </span>                  <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">{</span>
@@ -899,11 +1069,11 @@ to x, are shifted.</p></li>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>    ) – array to be divided into sub-arrays.</p></li>
-<li><p><strong>num_or_size_splits</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]]]) – Number of equal arrays to divide the array into along the given axis if an (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
+<li><p><strong>num_or_size_splits</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]]]) – Number of equal arrays to divide the array into along the given axis if an (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
 integer. The size of each split element if a sequence of integers. Default is to
 divide into as many 1-dimensional arrays as the axis dimension.</p></li>
 <li><p><strong>axis</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – The axis along which to split, default is 0. (default: <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></li>
-<li><p><strong>with_remainder</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – If the tensor does not split evenly, then store the last remainder entry. (default: <code class="docutils literal notranslate"><span class="pre">False</span></code>)
+<li><p><strong>with_remainder</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>]) – If the tensor does not split evenly, then store the last remainder entry. (default: <code class="docutils literal notranslate"><span class="pre">False</span></code>)
 Default is False.</p></li>
 </ul>
 </dd>
@@ -911,15 +1081,12 @@ Default is False.</p></li>
 <dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a>]</p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><ul class="simple">
-<li><p><em>ret</em> – A list of sub-arrays.</p></li>
-<li><p><em>Both the description and the type hints above assumes an array input for simplicity,</em></p></li>
-<li><p>but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code></p></li>
-<li><p><em>instances in place of any of the arguments.</em></p></li>
-</ul>
-</p>
+<dd class="field-odd"><p><em>ret</em> – A list of sub-arrays.</p>
 </dd>
 </dl>
+<p>Both the description and the type hints above assumes an array input for simplicity,
+but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
+instances in place of any of the arguments.</p>
 <p class="rubric">Functional Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -973,19 +1140,15 @@ inputs broadcast to.</p></li>
 <dd class="field-even"><p><a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><ul class="simple">
-<li><p><em>ret</em> – an output array having the same data type and elements as x.</p></li>
-<li><p>This function conforms to the <a href="#id13"><span class="problematic" id="id14">`</span></a>Array API Standard</p></li>
-<li><p><strong>&lt;https</strong> (//data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the)</p></li>
-<li><p><strong>`docstring &lt;https</strong> (//data-apis.org/array-api/latest/API_specification/generated/signatures.manipulation_functions.squeeze.html#signatures.manipulation_functions.squeeze&gt;`_ : E501)</p></li>
-<li><p><em>in the standard.</em></p></li>
-<li><p><em>Both the description and the type hints above assumes an array input for simplicity,</em></p></li>
-<li><p>but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code></p></li>
-<li><p><em>instances in place of any of the arguments.</em></p></li>
-</ul>
-</p>
+<dd class="field-odd"><p><em>ret</em> – an output array having the same data type and elements as x.</p>
 </dd>
 </dl>
+<p>This function conforms to the <a class="reference external" href="https://data-apis.org/array-api/latest/">Array API Standard</a>. This docstring is an extension of the
+<a class="reference external" href="https://data-apis.org/array-api/latest/API_specification/generated/signatures.manipulation_functions.squeeze.html">docstring</a> 
+in the standard.</p>
+<p>Both the description and the type hints above assumes an array input for simplicity,
+but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
+instances in place of any of the arguments.</p>
 <p class="rubric">Functional Examples</p>
 <p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> input:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]])</span>
@@ -1018,7 +1181,8 @@ inputs broadcast to.</p></li>
 </pre></div>
 </div>
 <p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> input:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span>                           <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]))</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]),</span>
+<span class="gp">... </span>                  <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">{</span>
@@ -1055,8 +1219,7 @@ inputs broadcast to.</p></li>
 <dd class="field-even"><p><a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><ul>
-<li><p><em>ret</em> – an output array having rank N+1, where N is the rank (number of
+<dd class="field-odd"><p><p><em>ret</em> – an output array having rank N+1, where N is the rank (number of
 dimensions) of x. If the input arrays have different data types, normal
 ref:<cite>type-promotion</cite> must apply. If the input arrays have the same data type,
 the output array must have the same data type as the input arrays.
@@ -1065,18 +1228,15 @@ the output array must have the same data type as the input arrays.
 <span class="n">intxx</span> <span class="ow">and</span> <span class="n">floatxx</span><span class="p">)</span> <span class="n">unspecified</span><span class="o">.</span>
 </pre></div>
 </div>
-</li>
-<li><p>This function conforms to the <a href="#id15"><span class="problematic" id="id16">`</span></a>Array API Standard</p></li>
-<li><p><strong>&lt;https</strong> (//data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the)</p></li>
-<li><p><strong>`docstring &lt;https</strong> (//data-apis.org/array-api/latest/API_specification/generated/signatures.manipulation_functions.stack.html#signatures.manipulation_functions.stack&gt;`_ : E501)</p></li>
-<li><p><em>in the standard.</em></p></li>
-<li><p><em>Both the description and the type hints above assumes an array input for simplicity,</em></p></li>
-<li><p>but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code></p></li>
-<li><p><em>instances in place of any of the arguments.</em></p></li>
-</ul>
 </p>
 </dd>
 </dl>
+<p>This function conforms to the <a class="reference external" href="https://data-apis.org/array-api/latest/">Array API Standard</a>. This docstring is an extension of the
+<a class="reference external" href="https://data-apis.org/array-api/latest/API_specification/generated/signatures.manipulation_functions.stack.html">docstring</a> 
+in the standard.</p>
+<p>Both the description and the type hints above assumes an array input for simplicity,
+but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
+instances in place of any of the arguments.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -1097,15 +1257,12 @@ inputs broadcast to.</p></li>
 <dd class="field-even"><p><a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><ul class="simple">
-<li><p><em>ret</em> – x with its axes permuted.</p></li>
-<li><p><em>Both the description and the type hints above assumes an array input for simplicity,</em></p></li>
-<li><p>but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code></p></li>
-<li><p><em>instances in place of any of the arguments.</em></p></li>
-</ul>
-</p>
+<dd class="field-odd"><p><em>ret</em> – x with its axes permuted.</p>
 </dd>
 </dl>
+<p>Both the description and the type hints above assumes an array input for simplicity,
+but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
+instances in place of any of the arguments.</p>
 <p class="rubric">Functional Examples</p>
 <p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> input:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
@@ -1190,6 +1347,9 @@ inputs broadcast to.</p></li>
 <span class="go">}</span>
 </pre></div>
 </div>
+<p>Both the description and the type hints above assumes an array input for simplicity,
+but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
+instances in place of any of the arguments.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -1220,7 +1380,8 @@ inputs broadcast to.</p></li>
 <span class="go">ivy.array([1,2,3,4,1,2,3,4,1,2,3,4])</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>                        <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
+<span class="gp">... </span>               <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">ivy.array([[1,2,3,1,2,3,1,2,3],</span>
@@ -1230,7 +1391,7 @@ inputs broadcast to.</p></li>
 </pre></div>
 </div>
 <p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.NativeArray</span></code> input:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">native_array</span><span class="p">([[[</span><span class="mi">0</span><span class="p">],</span>                                <span class="p">[</span><span class="mi">1</span><span class="p">]]])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">native_array</span><span class="p">([[[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">]]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">x</span><span class="p">,(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">ivy.array([[[0,0,0],</span>
@@ -1249,8 +1410,7 @@ inputs broadcast to.</p></li>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">{</span>
 <span class="go">    a: ivy.array([[0,1,2,0,1,2]]),</span>
-<span class="go">    b: ivy.array([[3,3],</span>
-<span class="go">                  [4,4]])</span>
+<span class="go">    b: ivy.array([[3,3],[4,4]])</span>
 <span class="go">}</span>
 </pre></div>
 </div>
@@ -1329,6 +1489,9 @@ instances in place of any of the arguments.</p>
 <span class="go">}]</span>
 </pre></div>
 </div>
+<p>Both the description and the type hints above assumes an array input for simplicity,
+but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
+instances in place of any of the arguments.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -1349,15 +1512,12 @@ inputs broadcast to.</p></li>
 <dd class="field-even"><p><a class="reference internal" href="../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><ul class="simple">
-<li><p><em>ret</em> – Padded array of rank equal to x with shape increased according to pad_width.</p></li>
-<li><p><em>Both the description and the type hints above assumes an array input for simplicity,</em></p></li>
-<li><p>but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code></p></li>
-<li><p><em>instances in place of any of the arguments.</em></p></li>
-</ul>
-</p>
+<dd class="field-odd"><p><em>ret</em> – Padded array of rank equal to x with shape increased according to pad_width.</p>
 </dd>
 </dl>
+<p>Both the description and the type hints above assumes an array input for simplicity,
+but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
+instances in place of any of the arguments.</p>
 </dd></dl>
 
 <div class="toctree-wrapper compound">

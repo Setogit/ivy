@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Applied Libraries" href="5_applied_libraries.html" />
-    <link rel="prev" title="Exception Handling" href="../deep_dive/18_exception_handling.html" /> 
+    <link rel="prev" title="Continuous Integration 🔁" href="../deep_dive/19_continuous_integration.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -64,6 +64,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="5_applied_libraries.html">Applied Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_helpful_resources.html">Helpful Resources</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../deep_dive.html">Deep Dive</a></li>
@@ -218,14 +219,14 @@ method, <code class="xref py py-class docutils literal notranslate"><span class=
 <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> special method, <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> reverse special method,
 <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> special method, <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> reverse special method.</p></li>
 <li><p>Make sure that the aforementioned methods are added into the correct
-category-specific parent class, such as <code class="code docutils literal notranslate"><span class="pre">ivy.ArrayWithElementwise</span></code>,
-<code class="code docutils literal notranslate"><span class="pre">ivy.ContainerWithManipulation</span></code> etc.</p></li>
-<li><p>correct all of the <a class="reference internal" href="../deep_dive/11_function_arguments.html#function-arguments"><span class="std std-ref">Function Arguments</span></a> and the type hints for every
+category-specific parent class, such as <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.ArrayWithElementwise</span></code>,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.ContainerWithManipulation</span></code> etc.</p></li>
+<li><p>correct all of the <span class="xref std std-ref">Function Arguments</span> and the type hints for every
 function <strong>and</strong> its <em>relevant methods</em>, including those you did not implement
 yourself.</p></li>
-<li><p>add the correct <a class="reference internal" href="../deep_dive/12_docstrings.html#docstrings"><span class="std std-ref">Docstrings</span></a> to every function <strong>and</strong> its <em>relevant methods</em>,
+<li><p>add the correct <span class="xref std std-ref">Docstrings</span> to every function <strong>and</strong> its <em>relevant methods</em>,
 including those you did not implement yourself.</p></li>
-<li><p>add thorough <a class="reference internal" href="../deep_dive/13_docstring_examples.html#docstring-examples"><span class="std std-ref">Docstring Examples</span></a> for every function <strong>and</strong> its
+<li><p>add thorough <span class="xref std std-ref">Docstring Examples</span> for every function <strong>and</strong> its
 <em>relevant methods</em> and ensure they pass the docstring tests.</p></li>
 </ol>
 <section id="formatting-checklist">
@@ -276,11 +277,11 @@ for this task.</p>
 <li><p>write tests for your function by following the <a class="reference external" href="https://lets-unify.ai/ivy/deep_dive/17_ivy_frontends_tests.html">Ivy Frontend Tests</a> guide</p></li>
 <li><p>verify that the tests for your function are passing</p></li>
 </ol>
-<p>If you feel as though there is an ivy function <code class="code docutils literal notranslate"><span class="pre">ivy.&lt;func_name&gt;</span></code> clearly missing,
+<p>If you feel as though there is an ivy function <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.</span></code> clearly missing,
 which would make your frontend function much simpler to implement,
 then you you should first do the following:</p>
 <ol class="arabic simple">
-<li><p>create a new issue with the title <code class="code docutils literal notranslate"><span class="pre">ivy.&lt;func_name&gt;</span></code>, add the labels
+<li><p>create a new issue with the title <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.</span></code>, add the labels
 <code class="code docutils literal notranslate"><span class="pre">Suggestion</span></code>, <code class="code docutils literal notranslate"><span class="pre">Extension</span></code>, <code class="code docutils literal notranslate"><span class="pre">Ivy</span> <span class="pre">API</span></code> and <code class="code docutils literal notranslate"><span class="pre">Next</span> <span class="pre">Release</span></code>
 to it, and then simply leave this issue open. At some point, a member of our team
 will assess whether it should be added, and if so, they will add it to another
@@ -297,14 +298,14 @@ PR is merged, your sub-task issue will then be closed as normal.</p></li>
 compositionally, or if this is not feasible, then you can simply choose another
 frontend function to work on. You could also choose to work on another open task
 entirely at this point if you wanted to. For example, you might decide to wait for a
-member of our team to review your suggested addition <code class="code docutils literal notranslate"><span class="pre">ivy.&lt;func_name&gt;</span></code>, and
+member of our team to review your suggested addition <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.</span></code>, and
 potentially add this to an Ivy Extension ToDo list issue (see the open task below).
 In either case, you should add the label “Pending other Issue” to the frontend
 sub-task issue, and leave it open. This issue will then still show up as open in the
 original frontend ToDo list, helpfully preventing others from working on this
 problematic frontend function, which depends on the unimplemented
-<code class="code docutils literal notranslate"><span class="pre">ivy.&lt;func_name&gt;</span></code>. Finally, you should add a comment to the issue with the
-contents: <code class="code docutils literal notranslate"><span class="pre">pending</span> <span class="pre">&lt;issue_link&gt;</span></code>, which links to the <code class="code docutils literal notranslate"><span class="pre">ivy.&lt;func_name&gt;</span></code>
+<code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.</span></code>. Finally, you should add a comment to the issue with the
+contents: <code class="code docutils literal notranslate"><span class="pre">pending</span> <span class="pre">&lt;issue_link&gt;</span></code>, which links to the <code class="xref py py-func docutils literal notranslate"><span class="pre">ivy.</span></code>
 issue, making the “Pending other Issue” label more informative.</p></li>
 </ol>
 <p>There are a few other points to take note of when working on your chosen frontend
@@ -419,7 +420,7 @@ or reach out on <a class="reference external" href="https://discord.gg/ZVQdvbzNQ
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../deep_dive/18_exception_handling.html" class="btn btn-neutral float-left" title="Exception Handling" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../deep_dive/19_continuous_integration.html" class="btn btn-neutral float-left" title="Continuous Integration 🔁" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="5_applied_libraries.html" class="btn btn-neutral float-right" title="Applied Libraries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

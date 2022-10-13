@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="ivy.diagonal" href="diagonal/diagonal_functional.html" />
-    <link rel="prev" title="ivy.Container.static_det" href="det/static_det_container.html" /> 
+    <link rel="prev" title="diag" href="diag.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -68,6 +68,7 @@
 <li class="toctree-l2"><a class="reference internal" href="cholesky.html">cholesky</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cross.html">cross</a></li>
 <li class="toctree-l2"><a class="reference internal" href="det.html">det</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diag.html">diag</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">diagonal</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="diagonal/diagonal_functional.html">ivy.diagonal</a></li>
 <li class="toctree-l3"><a class="reference internal" href="diagonal/diagonal_array.html">ivy.Array.diagonal</a></li>
@@ -96,6 +97,7 @@
 <li class="toctree-l2"><a class="reference internal" href="vecdot.html">vecdot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vector_norm.html">vector_norm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vector_to_skew_symmetric_matrix.html">vector_to_skew_symmetric_matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vander.html">vander</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../losses.html">Losses</a></li>
@@ -195,24 +197,21 @@ of dimensions as the function output.</p></li>
 <dd class="field-even"><p><a class="reference internal" href="../../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><ul class="simple">
-<li><p><em>ret</em> – an array containing the diagonals and whose shape is determined by removing the
+<dd class="field-odd"><p><em>ret</em> – an array containing the diagonals and whose shape is determined by removing the
 last two dimensions and appending a dimension equal to the size of the resulting
-diagonals. The returned array must have the same data type as <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p></li>
-<li><p>This function conforms to the <a href="#id1"><span class="problematic" id="id2">`</span></a>Array API Standard</p></li>
-<li><p><strong>&lt;https</strong> (//data-apis.org/array-api/latest/&gt;`_. This docstring is an extension of the)</p></li>
-<li><p><strong>`docstring &lt;https</strong> (//data-apis.org/array-api/latest/API_specification/generated/signatures.elementwise_functions.tan.html&gt;`_ )</p></li>
-<li><p><em>in the standard.</em></p></li>
-<li><p><em>Both the description and the type hints above assumes an array input for simplicity,</em></p></li>
-<li><p>but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code></p></li>
-<li><p><em>instances in place of any of the arguments.</em></p></li>
-</ul>
-</p>
+diagonals. The returned array must have the same data type as <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
 </dd>
 </dl>
+<p>This function conforms to the <a class="reference external" href="https://data-apis.org/array-api/latest/">Array API Standard</a>. This docstring is an extension of the
+<a class="reference external" href="https://data-apis.org/array-api/latest/extensions/generated/signatures.linalg.diagonal.html">docstring</a> 
+in the standard.</p>
+<p>Both the description and the type hints above assumes an array input for simplicity,
+but this function is <em>nestable</em>, and therefore also accepts <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code>
+instances in place of any of the arguments.</p>
 <p class="rubric">Functional Examples</p>
 <p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> inputs:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span>                       <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">]])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span>
+<span class="gp">... </span>               <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">]])</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -220,14 +219,18 @@ diagonals. The returned array must have the same data type as <code class="docut
 <span class="go">ivy.array([1., 4.])</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span>                        <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">]],</span>                       <span class="p">[[</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">],</span>                        <span class="p">[</span><span class="mf">7.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">]]])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span>
+<span class="gp">... </span>                <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">]],</span>
+<span class="gp">... </span>               <span class="p">[[</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">],</span>
+<span class="gp">... </span>                <span class="p">[</span><span class="mf">7.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">]]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 <span class="go">ivy.array([[1., 4.],</span>
 <span class="go">           [5., 8.]])</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span>                       <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">]])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span>
+<span class="gp">... </span>               <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">]])</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -235,13 +238,23 @@ diagonals. The returned array must have the same data type as <code class="docut
 <span class="go">ivy.array([2.])</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>                       <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>                       <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>                  <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+<span class="gp">... </span>                  <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">offset</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis1</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 <span class="go">ivy.array([3, 7])</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">],</span>                        <span class="p">[</span> <span class="mi">3</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">],</span>                        <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span>  <span class="mi">8</span><span class="p">]],</span>                       <span class="p">[[</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span>                        <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span>                        <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">]],</span>                       <span class="p">[[</span><span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>                        <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">],</span>                        <span class="p">[</span><span class="mi">24</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">]]])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>                <span class="p">[</span> <span class="mi">3</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">],</span>
+<span class="gp">... </span>                <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span>  <span class="mi">8</span><span class="p">]],</span>
+<span class="gp">... </span>               <span class="p">[[</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span>
+<span class="gp">... </span>                <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span>
+<span class="gp">... </span>                <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">]],</span>
+<span class="gp">... </span>               <span class="p">[[</span><span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+<span class="gp">... </span>                <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">],</span>
+<span class="gp">... </span>                <span class="p">[</span><span class="mi">24</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">]]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis1</span><span class="o">=-</span><span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 <span class="go">ivy.array([[1, 11],</span>
@@ -249,14 +262,20 @@ diagonals. The returned array must have the same data type as <code class="docut
 <span class="go">           [7, 17]])</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>                        <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]],</span>                       <span class="p">[[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>                        <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]]])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<span class="gp">... </span>                <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]],</span>
+<span class="gp">... </span>               <span class="p">[[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+<span class="gp">... </span>                <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis2</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 <span class="go">ivy.array([[0, 6],</span>
 <span class="go">           [1, 7]])</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span>                        <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">]],</span>                       <span class="p">[[</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">],</span>                        <span class="p">[</span><span class="mf">7.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">]]])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span>
+<span class="gp">... </span>                <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">]],</span>
+<span class="gp">... </span>               <span class="p">[[</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">],</span>
+<span class="gp">... </span>                <span class="p">[</span><span class="mf">7.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">]]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis2</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 <span class="go">ivy.array([[3.],</span>
@@ -264,13 +283,22 @@ diagonals. The returned array must have the same data type as <code class="docut
 </pre></div>
 </div>
 <p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.NativeArray</span></code> inputs:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">native_array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span>                              <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">]])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">native_array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span>
+<span class="gp">... </span>                      <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 <span class="go">ivy.array([1., 4.])</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">native_array</span><span class="p">([[[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">],</span>                               <span class="p">[</span> <span class="mi">3</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">],</span>                               <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span>  <span class="mi">8</span><span class="p">]],</span>                              <span class="p">[[</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span>                               <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span>                               <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">]],</span>                              <span class="p">[[</span><span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>                               <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">],</span>                               <span class="p">[</span><span class="mi">24</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">]]])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">native_array</span><span class="p">([[[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>                       <span class="p">[</span> <span class="mi">3</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">],</span>
+<span class="gp">... </span>                       <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span>  <span class="mi">8</span><span class="p">]],</span>
+<span class="gp">... </span>                      <span class="p">[[</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span>
+<span class="gp">... </span>                       <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span>
+<span class="gp">... </span>                       <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">]],</span>
+<span class="gp">... </span>                      <span class="p">[[</span><span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+<span class="gp">... </span>                       <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">],</span>
+<span class="gp">... </span>                       <span class="p">[</span><span class="mi">24</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">]]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis2</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 <span class="go">ivy.array([[ 1,  5],</span>
@@ -278,14 +306,23 @@ diagonals. The returned array must have the same data type as <code class="docut
 <span class="go">           [19, 23]])</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">native_array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>                              <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>                              <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">native_array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>                      <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+<span class="gp">... </span>                      <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 <span class="go">ivy.array([0, 4, 8])</span>
 </pre></div>
 </div>
 <p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> inputs:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>            <span class="n">a</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>                           <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>                           <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]),</span>            <span class="n">b</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>                           <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>                           <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>        <span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+<span class="gp">... </span>       <span class="n">a</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>                      <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+<span class="gp">... </span>                      <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]),</span>
+<span class="gp">... </span>       <span class="n">b</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>                      <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+<span class="gp">... </span>                      <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="gp">... </span>   <span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 <span class="go">{</span>
@@ -294,16 +331,6 @@ diagonals. The returned array must have the same data type as <code class="docut
 <span class="go">}</span>
 </pre></div>
 </div>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="ivy.array.array_methods.diagonal">
-<span class="sig-prename descclassname">ivy.Array.</span></span><span class="sig-name descname"><span class="pre">diagonal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/array/linear_algebra.html#ArrayWithLinear_algebra.diagonal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.array_methods.diagonal" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="../../../data_classes/array/array/Array.html#ivy.array.array.Array" title="ivy.array.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -326,38 +353,6 @@ diagonals. The returned array must have the same data type as <code class="docut
 </dl>
 </dd></dl>
 
-<table class="colwidths-given docutils align-default" id="id3">
-<caption><span class="caption-text">Device Support</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Device</p></th>
-<th class="head"><p>JAX</p></th>
-<th class="head"><p>NumPy</p></th>
-<th class="head"><p>TensorFlow</p></th>
-<th class="head"><p>PyTorch</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>CPU</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p>GPU</p></td>
-<td><p>❌</p></td>
-<td><p>❌</p></td>
-<td><p>❌</p></td>
-<td><p>❌</p></td>
-</tr>
-</tbody>
-</table>
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><strong>Supported Frameworks:</strong></div>
@@ -371,7 +366,7 @@ diagonals. The returned array must have the same data type as <code class="docut
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="det/static_det_container.html" class="btn btn-neutral float-left" title="ivy.Container.static_det" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="diag.html" class="btn btn-neutral float-left" title="diag" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="diagonal/diagonal_functional.html" class="btn btn-neutral float-right" title="ivy.diagonal" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
