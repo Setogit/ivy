@@ -6,7 +6,7 @@ import time
 import pytest
 import ivy
 
-@pytest.mark.parametrize("backend", ["torch", "jax", "tensorflow", "numpy"])
+@pytest.mark.parametrize("backend", ["torch", "jax", "tensorflow"])
 def test_first_ivy_model(backend):
 
     class MyModel(ivy.Module):
